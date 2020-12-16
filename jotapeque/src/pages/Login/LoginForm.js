@@ -4,9 +4,12 @@ import { ButtonContainer, ErrorContainer, Form } from './style'
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { login } from '../../services/user'
+import { useProtectPage } from '../../hooks/useProtectPage'
 
 
 export const LoginForm = () => {
+    useProtectPage('login')
+
     const history = useHistory()
     const [form, setForm, handleInputChange] = useForm({email:'', password:''})
     const [error, setError] = useState('')
@@ -45,7 +48,7 @@ export const LoginForm = () => {
                 value={form.email}
                 margin={'normal'}
                 required
-                autoFocus
+                // autoFocus
                 id={'input-email'}
                 size="small"
             />

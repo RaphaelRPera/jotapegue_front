@@ -1,16 +1,14 @@
 import React from 'react'
 import { useProtectPage } from '../../hooks/useProtectPage'
-import { SignUpForm } from './SignUpForm'
+import { CreateImageForm } from './CreateImageForm'
 import { PageContainer, Title } from './style'
 
-
-
-export const SignUp = () => {
-    useProtectPage('signup')
+export const CreateImage = () => {
+    useProtectPage('createimage')
     return (
         <PageContainer>
-            <Title>Cadastre-se!</Title>
-            <SignUpForm/>
+            <Title>Adicionar imagem</Title>
+            <CreateImageForm/>
         </PageContainer>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { MenuButton, PageContainer } from './style'
 import { useHistory } from 'react-router-dom'
-import { goToLogin, goToSignUp } from '../../router/Coordinator'
+import { goToLogin, goToSignUp, goToAddImage } from '../../router/Coordinator'
 
 
 export const MainAppBar = () => {
@@ -11,6 +11,7 @@ export const MainAppBar = () => {
             MainAppBar
             <MenuButton onClick={() => goToLogin(history)} >Login</MenuButton>
             <MenuButton onClick={() => goToSignUp(history)} >SignUp</MenuButton>
+            <MenuButton onClick={() => goToAddImage(history)} >Adicionar Imagem</MenuButton>
         </PageContainer>
     )
 }

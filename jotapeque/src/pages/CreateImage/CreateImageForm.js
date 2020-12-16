@@ -1,0 +1,159 @@
+import React, { useState } from 'react'
+import { Button, TextField} from '@material-ui/core'
+import { ButtonContainer, AlertContainer, Form } from './style'
+import { useHistory } from 'react-router-dom'
+import { useForm } from '../../hooks/useForm'
+import { addImage } from '../../services/image'
+
+
+export const CreateImageForm = () => {
+
+    const history = useHistory()
+    const [form, setForm, handleInputChange] = useForm(
+        {file:'', subtitle:'', author:'', tags:'', collection:''}
+    )
+    const [alert, setAlert] = useState({active: false, type: 'none', message: ''})
+    const [isLoading, setIsLoading] = useState(false)
+
+    const inputChange = (event) => {
+        setAlert({active: false, type: 'none', message: ''})
+        handleInputChange(event)
+    }
+
+    const inputTagChange = (event) => {
+        setAlert({active: false, type: 'none', message: ''})
+        const value = event.target.value
+        const newValue = value.replace(' ','')
+        setForm({...form, tags: newValue})
+    }
+
+    const newTags = (tags) => {
+        const newTags = tags.length && tags.split(';')
+        // console.log(newTags)
+        return newTags
+    }
+
+
+    const onClickSubmit = async (event) => {
+        event.preventDefault()
+
+        const inputCollection = document.getElementById('input-collection')
+        const collectionIsValid = inputCollection.checkValidity()
+        inputCollection.reportValidity()
+
+        const inputTags = document.getElementById('input-tags')
+        const tagsIsValid = inputTags.checkValidity()
+        inputTags.reportValidity()
+
+        const inputAuthor = document.getElementById('input-author')
+        const authorIsValid = inputAuthor.checkValidity()
+        inputAuthor.reportValidity()
+
+        const inputSubtitle = document.getElementById('input-subtitle')
+        const subtitleIsValid = inputSubtitle.checkValidity()
+        inputSubtitle.reportValidity()
+
+        const inputFile = document.getElementById('input-file')
+        const fielIsValid = inputFile.checkValidity()
+        inputFile.reportValidity()
+
+        if (fielIsValid && subtitleIsValid && authorIsValid && tagsIsValid && collectionIsValid) {
+            setIsLoading(true)
+            const formState = {file:'', subtitle:'', author:'', tags:'', collection:''}
+            const tags = newTags(form.tags)
+            const image = {...form, tags}
+            await addImage(image).then(
+                response => {
+                    setIsLoading(false)
+                    // console.log('CreateImageForm | onClickSubmit | addImage', response)
+                    switch (response.status) {
+                        case 409:
+                            setAlert({active: true, type:'error', message:'* Imagem já cadastrada'}); break;
+                        case 200:
+                            setAlert({active: true, type:'success', message:'Imagem cadastrada com sucesso'}); setForm(formState); break;
+                        default: setAlert({active: true, type:'error', message:'* Erro ao cadastrar imagem'}); break;
+                    }
+                }
+            )
+        }
+    }
+
+    return (
+        <Form>
+            <AlertContainer alert={alert}> {alert.message} </AlertContainer>
+            <TextField
+                label={'Imagem (url)'}
+                variant={'outlined'}
+                name={'file'}
+                // onChange={handleInputChange}
+                onChange={inputChange}
+                value={form.file}
+                margin={'normal'}
+                required
+                // autoFocus
+                id={'input-file'}
+                size="small"
+            />
+            <TextField
+                label={'Descrição'}
+                variant={'outlined'}
+                name={'subtitle'}
+                // onChange={handleInputChange}
+                onChange={inputChange}
+                value={form.subtitle}
+                margin={'normal'}
+                required
+                // autoFocus
+                id={'input-subtitle'}
+                size="small"
+            />
+            <TextField
+                label={'Autor'}
+                variant={'outlined'}
+                name={'author'}
+                onChange={inputChange}
+                value={form.author}
+                margin={'normal'}
+                required
+                // autoFocus
+                id={'input-author'}
+                size="small"
+            />
+            <TextField
+                label={'Tags (separadas por ;)'}
+                variant={'outlined'}
+                name={'tags'}
+                onChange={inputTagChange}
+                value={form.tags}
+                margin={'normal'}
+                required
+                // autoFocus
+                id={'input-tags'}
+                size="small"
+            />
+            <TextField
+                label={'Coleção'}
+                variant={'outlined'}
+                name={'collection'}
+                onChange={inputChange}
+                value={form.collection}
+                margin={'normal'}
+                required
+                // autoFocus
+                id={'input-collection'}
+                size="small"            
+            />
+            <ButtonContainer>
+                <Button
+                    color={'primary'}
+                    variant={'contained'}
+                    onClick={onClickSubmit}
+                    type={'submit'}
+                    fullWidth
+                    disabled={(alert.active && alert.type === 'error') ? true : false}
+                >Adicionar
+                </Button>
+            </ButtonContainer>
+        </Form>
+    )
+}

@@ -4,13 +4,16 @@ import { ButtonContainer, ErrorContainer, Form } from './style'
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { signUp } from '../../services/user'
+import { useProtectPage } from '../../hooks/useProtectPage'
 
 
 export const SignUpForm = () => {
+    useProtectPage('signup')
+
     const history = useHistory()
     const [form, setForm, handleInputChange] = useForm(
-        // {name:'', nickname:'', email:'', password:'', repassword:''}
-        {name:'Patricia Bernardes', nickname:'patricia', email:'patricia@email.com', password:'labenu123', repassword:'labenu123'}
+        {name:'', nickname:'', email:'', password:'', repassword:''}
+        // {name:'Patricia Bernardes', nickname:'patricia', email:'patricia@email.com', password:'labenu123', repassword:'labenu123'}
     )
     const [error, setError] = useState('')
 
