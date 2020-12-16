@@ -14,6 +14,13 @@ export const Title = styled.h2`
     margin-top: 0;
 `
 
+export const ErrorContainer = styled.div`
+    color: #DD1818;
+    transition: 0.5s;
+    display: ${props => props.error ? 'block' : 'none'};
+    text-align: left;
+`
+
 export const Form = styled.form`
     /* background-color: lightgreen; */
     display: flex;

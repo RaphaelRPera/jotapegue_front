@@ -9,3 +9,7 @@ export const PageContainer = styled.header`
     display: grid;
     place-items: center;
 `
+
+export const MenuButton = styled.div`
+    cursor: pointer;
+`
