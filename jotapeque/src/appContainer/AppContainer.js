@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 
 const MainPageContainer = styled.main`
-    background-color: lightblue;
+    /* background-color: lightblue; */
     /* min-height: 100vh; */
     min-height: calc(100vh - 120px - 60px);
     box-sizing: border-box;

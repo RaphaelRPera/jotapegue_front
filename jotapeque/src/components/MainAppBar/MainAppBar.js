@@ -1,17 +1,19 @@
 import React from 'react'
-import { MenuButton, PageContainer } from './style'
+import { MenuButton, MenuContainer, PageContainer } from './style'
 import { useHistory } from 'react-router-dom'
-import { goToLogin, goToSignUp, goToAddImage } from '../../router/Coordinator'
+import { goToLogin, goToSignUp, goToAddImage, goToFeed } from '../../router/Coordinator'
 
 
 export const MainAppBar = () => {
     const history = useHistory()
     return (
         <PageContainer>
-            MainAppBar
-            <MenuButton onClick={() => goToLogin(history)} >Login</MenuButton>
-            <MenuButton onClick={() => goToSignUp(history)} >SignUp</MenuButton>
-            <MenuButton onClick={() => goToAddImage(history)} >Adicionar Imagem</MenuButton>
+            <MenuContainer>
+                <MenuButton onClick={() => goToLogin(history)} >Login</MenuButton>
+                <MenuButton onClick={() => goToSignUp(history)} >SignUp</MenuButton>
+                <MenuButton onClick={() => goToAddImage(history)} >Adicionar Imagem</MenuButton>
+                <MenuButton onClick={() => goToFeed(history)} >Feed</MenuButton>
+            </MenuContainer>
         </PageContainer>
     )
 }

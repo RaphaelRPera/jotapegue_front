@@ -12,4 +12,10 @@ export const PageContainer = styled.header`
 
 export const MenuButton = styled.div`
     cursor: pointer;
+    margin: 0 10px;
+`
+
+export const MenuContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 `

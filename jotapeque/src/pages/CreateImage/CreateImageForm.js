@@ -150,8 +150,8 @@ export const CreateImageForm = () => {
                     onClick={onClickSubmit}
                     type={'submit'}
                     fullWidth
-                    disabled={(alert.active && alert.type === 'error') ? true : false}
-                >Adicionar
+                    disabled={((alert.active && alert.type === 'error') || isLoading) ? true : false}
+                >{isLoading ? 'processando...' : 'Adicionar'}
                 </Button>
             </ButtonContainer>
         </Form>
