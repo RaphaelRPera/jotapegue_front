@@ -11,8 +11,6 @@ export const PageContainer = styled.header`
     display: grid;
     align-content: center;
     justify-items: center;
-    /* grid-template-columns: minmax(100px, 20%) 1fr; */
-    /* grid-template-columns: auto 1fr; */
     grid-template-columns: 1fr;
     position: fixed;
     width: 100%;
@@ -20,10 +18,6 @@ export const PageContainer = styled.header`
 `
 
 export const MainContainer = styled.div`
-    /* background-color: lightcoral; */
-    /* display: grid; */
-    /* grid-template-columns: auto 1fr; */
-
     display: flex;
     justify-content: space-between;
 
@@ -33,10 +27,8 @@ export const MainContainer = styled.div`
 `
 
 export const LogoContainer = styled.div`
-    /* background-color: lightblue; */
     display: flex;
     align-items: center;
-    /* padding: 0 20px; */
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
@@ -49,7 +41,6 @@ export const LogoFirstLetter = styled.span`
 
 
 export const MenuContainer = styled.div`
-    /* background-color: lightgoldenrodyellow; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,7 +66,7 @@ export const ButtonIcon = styled.div`
 
 export const ButtonText = styled.div`
     font-size: 14px;
-    @media screen and(min-width: 350px) {font-size: 16px;};
+    @media screen and (min-width: 350px) {font-size: 16px;};
 `
 
 

@@ -19,7 +19,6 @@ export const LoginForm = (props) => {
         handleInputChange(event)
     }
 
-
     const onClickSubmit = (event) => {
         event.preventDefault()
         
@@ -48,7 +47,7 @@ export const LoginForm = (props) => {
                 value={form.email}
                 margin={'normal'}
                 required
-                // autoFocus
+                autoFocus
                 id={'input-email'}
                 size="small"
             />

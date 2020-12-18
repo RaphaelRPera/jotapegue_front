@@ -25,6 +25,5 @@ export const Login = (props) => {
                 </PageContainer>
             }
         </>
-        // <> {content} </>
     )
 }

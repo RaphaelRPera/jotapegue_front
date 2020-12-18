@@ -13,7 +13,6 @@ export const SignUpForm = () => {
     const history = useHistory()
     const [form, setForm, handleInputChange] = useForm(
         {name:'', nickname:'', email:'', password:'', repassword:''}
-        // {name:'Patricia Bernardes', nickname:'patricia', email:'patricia@email.com', password:'labenu123', repassword:'labenu123'}
     )
     const [error, setError] = useState('')
 
@@ -64,7 +63,6 @@ export const SignUpForm = () => {
                 label={'Nome'}
                 variant={'outlined'}
                 name={'name'}
-                // onChange={handleInputChange}
                 onChange={inputChange}
                 value={form.name}
                 margin={'normal'}

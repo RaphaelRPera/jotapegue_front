@@ -3,10 +3,7 @@ import { validateUser } from '../services/user'
 
 
 export const protectPage = async (page, history) => {
-    // console.log(`[protectPage]: [${page}]: running...`)
-
     const token = localStorage.getItem('token')
-    // const token = 'banana'
     await validateUser(token).then(response => {
         if (page !== 'login' && page !== 'signup' && !response) {
             // console.log(`[protectPage]: ${response} - goToLogin`)

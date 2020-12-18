@@ -2,8 +2,6 @@ import styled from 'styled-components'
 
 
 export const PageContainer = styled.div`
-    /* background-color: lightblue; */
-    /* padding: 5px; */
     width: 100%;
     max-width: 910px;
     min-width: 270px;
@@ -21,10 +19,7 @@ export const PageContainer = styled.div`
     }
 
     @media screen and (min-width: 736px) {
-        /* padding: 20px; */
         gap:20px;
     };
 
 `
-
-

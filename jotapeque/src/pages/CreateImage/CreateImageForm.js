@@ -26,7 +26,6 @@ export const CreateImageForm = () => {
 
     const newTags = (tags) => {
         const newTags = tags.length && tags.split(';')
-        // console.log(newTags)
         return newTags
     }
 
@@ -58,7 +57,6 @@ export const CreateImageForm = () => {
             await addImage(image).then(
                 response => {
                     setIsLoading(false)
-                    // console.log('CreateImageForm | onClickSubmit | addImage', response)
                     switch (response.status) {
                         case 409:
                             setAlert({active: true, type:'error', message:'* Imagem já cadastrada'}); break;
@@ -78,7 +76,6 @@ export const CreateImageForm = () => {
                 label={'Imagem (url)'}
                 variant={'outlined'}
                 name={'file'}
-                // onChange={handleInputChange}
                 onChange={inputChange}
                 value={form.file}
                 margin={'normal'}
@@ -91,12 +88,10 @@ export const CreateImageForm = () => {
                 label={'Descrição'}
                 variant={'outlined'}
                 name={'subtitle'}
-                // onChange={handleInputChange}
                 onChange={inputChange}
                 value={form.subtitle}
                 margin={'normal'}
                 required
-                // autoFocus
                 id={'input-subtitle'}
                 size="small"
             />
@@ -108,7 +103,6 @@ export const CreateImageForm = () => {
                 value={form.tags}
                 margin={'normal'}
                 required
-                // autoFocus
                 id={'input-tags'}
                 size="small"
             />
@@ -120,7 +114,6 @@ export const CreateImageForm = () => {
                 value={form.collection}
                 margin={'normal'}
                 required
-                // autoFocus
                 id={'input-collection'}
                 size="small"            
             />

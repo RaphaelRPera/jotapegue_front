@@ -1,18 +1,14 @@
 import axios from 'axios'
-import { goToFeed, goToLogin, goToSignUp } from '../router/Coordinator'
+import { goToFeed, goToLogin } from '../router/Coordinator'
 
 
 const baseUrl = 'http://localhost:3003'
 
 
 export const signUp = (body, history, setForm, formState, setError) => {
-    // console.log(`[services]: [user.js]: [signup]: [body]:`, body)
-    
     axios.post(`${baseUrl}/user/signup`, body)
         .then(response => {
-            console.log(`[services]: [user.js]: [signup]: [response]:`, response.data.token)
             localStorage.setItem('token', response.data.token)
-            // setForm(formState)
             goToLogin(history)
         })
         .catch(error => {
@@ -27,17 +23,14 @@ export const signUp = (body, history, setForm, formState, setError) => {
 }
 
 export const login = (body, history, setForm, formState, setError, setNickname) => {
-    // console.log(`[services]: [user.js]: [login]: [body]:`, body)
     axios.post(`${baseUrl}/user/login`, body)
         .then(response => {
-            // console.log(`[services]: [user.js]: [login]: [response]:`, response.data.token)
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('nickname', response.data.nickname)
             setNickname(response.data.nickname)
             goToFeed(history)
         })
         .catch(error => {
-            // console.log('error:', error.response)
             setError('* Usuário ou senha incorretos!')
         })
 }

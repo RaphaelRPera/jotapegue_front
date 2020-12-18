@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 
 export const CardContainer = styled.div`
-    /* background-color: whitesmoke; */
     border-radius: 7px;
     display: flex;
     flex-direction: column;

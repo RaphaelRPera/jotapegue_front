@@ -17,6 +17,7 @@ export const PageContainer = styled.div`
     overflow:auto;
 `
 
+
 export const ModalContainer = styled.div`
     background-color: lightcoral;
     width: 100%;
@@ -33,7 +34,6 @@ export const CloseButton = styled.span`
     position: absolute;
     top: 0;
     right: 0;
-
     padding: 7px 25px;
     color: white;
     font-size: 30px;
@@ -45,6 +45,7 @@ export const Img = styled.img`
     width: 100%;
 `
 
+
 export const SideArrow = styled.div`
     align-self: center;
     cursor: ${props => props.active ? 'pointer' : 'auto'};
@@ -54,7 +55,9 @@ export const SideArrow = styled.div`
     user-select: none;
 `
 
+
 export const SidePanel = styled.div`
+    background-color: #FAFAFA;
     font-size: calc(12px + 0.4vw);
     background-color: whitesmoke;
     padding: 10px 5px;
@@ -63,6 +66,4 @@ export const SidePanel = styled.div`
     justify-content: space-between;
     word-wrap: break-word;
 `
-
-
 

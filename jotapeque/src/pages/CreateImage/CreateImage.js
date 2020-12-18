@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import { useProtectPage } from '../../hooks/useProtectPage'
 import { CreateImageForm } from './CreateImageForm'
 import { PageContainer, Title } from './style'
 import { useHistory } from 'react-router-dom'
@@ -17,9 +16,13 @@ export const CreateImage = () => {
         verifyProtect()
     }, [])
     return (
-        <PageContainer>
-            <Title>Adicionar imagem</Title>
-            <CreateImageForm/>
-        </PageContainer>
+        <>
+            {protect &&
+                <PageContainer>
+                    <Title>Adicionar imagem</Title>
+                    <CreateImageForm/>
+                </PageContainer>
+            }
+        </>
     )
 }

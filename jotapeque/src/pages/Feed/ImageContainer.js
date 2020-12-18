@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { protectPage } from '../../hooks/protectPage'
-// import { goToLogin } from '../../router/Coordinator'
 import { getImageAll } from '../../services/image'
 import { ImageCard } from './ImageCard'
 import { ImageModal } from './ImageModal'
@@ -19,9 +18,9 @@ export const ImageContainer = () => {
             .then(response => {              
                 switch (response.status) {
                     case 200: setImagesBd(response.data); break;
-                    case 401: console.log(`[ImageContainer]: [getImages]: Acesso não autorizado 401`); protectPage('feed', history) ;break;
-                    case 400: console.log(`[ImageContainer]: [getImages]: Acesso não autorizado 400`); break;
-                    default: console.log(`[ImageContainer]: [getImages]: [response]:`, response); break;
+                    case 401: console.log(`[ImageContainer]: 401 Acesso não autorizado`); protectPage('feed', history) ;break;
+                    case 400: console.log(`[ImageContainer]: 400 Acesso não autorizado`); break;
+                    default: console.log(`[ImageContainer]: [response]:`, response); break;
                 }
                 console.log('getting images... DONE!')
             })
@@ -37,7 +36,6 @@ export const ImageContainer = () => {
 
     return (
         <PageContainer>
-            {/* {console.log(modal)} */}
             {modal.open && <ImageModal imagesBd={imagesBd} setModal={setModal} index={modal.index} />}
             {cards}
         </PageContainer>
