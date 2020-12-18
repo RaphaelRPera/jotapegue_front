@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
 import { Button, TextField} from '@material-ui/core'
 import { ButtonContainer, AlertContainer, Form } from './style'
-import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { addImage } from '../../services/image'
 
 
 export const CreateImageForm = () => {
-
-    const history = useHistory()
     const [form, setForm, handleInputChange] = useForm(
-        {file:'', subtitle:'', author:'', tags:'', collection:''}
+        {file:'', subtitle:'', tags:'', collection:''}
     )
     const [alert, setAlert] = useState({active: false, type: 'none', message: ''})
     const [isLoading, setIsLoading] = useState(false)
@@ -45,10 +42,6 @@ export const CreateImageForm = () => {
         const tagsIsValid = inputTags.checkValidity()
         inputTags.reportValidity()
 
-        const inputAuthor = document.getElementById('input-author')
-        const authorIsValid = inputAuthor.checkValidity()
-        inputAuthor.reportValidity()
-
         const inputSubtitle = document.getElementById('input-subtitle')
         const subtitleIsValid = inputSubtitle.checkValidity()
         inputSubtitle.reportValidity()
@@ -57,9 +50,9 @@ export const CreateImageForm = () => {
         const fielIsValid = inputFile.checkValidity()
         inputFile.reportValidity()
 
-        if (fielIsValid && subtitleIsValid && authorIsValid && tagsIsValid && collectionIsValid) {
+        if (fielIsValid && subtitleIsValid && tagsIsValid && collectionIsValid) {
             setIsLoading(true)
-            const formState = {file:'', subtitle:'', author:'', tags:'', collection:''}
+            const formState = {file:'', subtitle:'', tags:'', collection:''}
             const tags = newTags(form.tags)
             const image = {...form, tags}
             await addImage(image).then(
@@ -90,7 +83,7 @@ export const CreateImageForm = () => {
                 value={form.file}
                 margin={'normal'}
                 required
-                // autoFocus
+                autoFocus
                 id={'input-file'}
                 size="small"
             />
@@ -105,18 +98,6 @@ export const CreateImageForm = () => {
                 required
                 // autoFocus
                 id={'input-subtitle'}
-                size="small"
-            />
-            <TextField
-                label={'Autor'}
-                variant={'outlined'}
-                name={'author'}
-                onChange={inputChange}
-                value={form.author}
-                margin={'normal'}
-                required
-                // autoFocus
-                id={'input-author'}
                 size="small"
             />
             <TextField

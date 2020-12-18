@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { Button, TextField} from '@material-ui/core'
-import { ButtonContainer, ErrorContainer, Form } from './style'
+import { ButtonContainer, ErrorContainer, Form, Link } from './style'
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { login } from '../../services/user'
 import { useProtectPage } from '../../hooks/useProtectPage'
+import { goToSignUp } from '../../router/Coordinator'
 
 
-export const LoginForm = () => {
-    useProtectPage('login')
-
+export const LoginForm = (props) => {
     const history = useHistory()
     const [form, setForm, handleInputChange] = useForm({email:'', password:''})
     const [error, setError] = useState('')
+    const setNickname = props.setNickname
 
     const inputChange = (event) => {
         setError('')
@@ -33,7 +33,7 @@ export const LoginForm = () => {
 
         if (emailIsValid && passwordIsValid) {
             const formState = {email:'', password:''}
-            login(form, history, setForm, formState, setError)
+            login(form, history, setForm, formState, setError, setNickname)
         }
     }
 
@@ -52,6 +52,7 @@ export const LoginForm = () => {
                 id={'input-email'}
                 size="small"
             />
+
             <TextField
                 label={'Senha'}
                 variant={'outlined'}
@@ -65,6 +66,7 @@ export const LoginForm = () => {
                 id={'input-password'}
                 size="small"            
             />
+
             <ButtonContainer>
                 <Button
                     color={'primary'}
@@ -72,7 +74,15 @@ export const LoginForm = () => {
                     onClick={onClickSubmit}
                     type={'submit'}
                     fullWidth
-                >Login</Button>
+                 >Login
+                </Button>
+
+                <Button
+                    onClick={() => goToSignUp(history)}
+                    color={'primary'}
+                    size={'small'}
+                 >Cadastre-se
+                </Button>
             </ButtonContainer>
         </Form>
     )

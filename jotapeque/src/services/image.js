@@ -26,3 +26,26 @@ export const addImage = async (body) => {
         return false
     }
 }
+
+
+export const getImageAll = async () => {
+    const token = localStorage.getItem('token')
+    // const token = 'banana'
+    const config = {headers: {Authorization: token}}
+    try {
+        return await axios.get(`${baseUrl}/image/all`, config)
+            .then(response => {
+                // console.log(`[getImageAll]: [try response]:`, response)
+                const result = {status: response.status, data: response.data}
+                return result
+            })
+            .catch(error => {
+                // console.log(`[getImageAll]: [try error]:`, error.response)
+                const result = {status: error.response.status, message: error.response.data.message || error}
+                return result
+            })
+    } catch (error) {
+        // console.log(`[getImageAll]: [catch error]:`, error.response)
+        return error
+    }
+}

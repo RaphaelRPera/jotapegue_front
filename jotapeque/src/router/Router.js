@@ -6,11 +6,11 @@ import { Login } from '../pages/Login/Login'
 import { SignUp } from '../pages/SignUp/SignUp'
 
 
-export const Router = () => {
+export const Router = (props) => {
     return (
         <Switch>
-            <Route exact path={'/login'} >
-                <Login/>
+            <Route exact path={['/', '/login']} >
+                <Login setNickname={props.setNickname} />
             </Route>
 
             <Route exact path={['/', '/signup']} >

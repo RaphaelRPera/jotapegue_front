@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button, TextField} from '@material-ui/core'
 
 
 export const PageContainer = styled.div`
@@ -31,5 +32,14 @@ export const Form = styled.form`
 `
 
 export const ButtonContainer = styled.div`
-    margin: 20px 0 0 0;
+    /* background-color: lightblue; */
+    margin: 15px 0 0 0;
+    display:grid;
+    align-items: center;
+    grid-template-rows: auto auto;
+    row-gap: 10px;
+`
+
+export const Link = styled(Button)`
+    padding: 15px 0 0 0;
 `

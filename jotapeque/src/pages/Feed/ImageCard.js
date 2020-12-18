@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { CardContainer, CardHover, Img, ImgContainer } from './styleCard'
+import { CardContainer, CardHover, ImgContainer } from './styleCard'
 
 
-export const ImageCard = () => {
-    const imgUrl = 'https://img.olhardigital.com.br/uploads/acervo_imagens/2020/05/r16x9/20200511124538_1200_675_-_lancamento_de_foguete_soyuz.jpg'
+export const ImageCard = (props) => {
+    const imgUrl = props.image.file
     const [isHover, setIsHover] = useState(false)
 
     return (
         <CardContainer onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
             <ImgContainer imgUrl={imgUrl}>
-                {isHover && <CardHover>TESTE</CardHover>}
+                {isHover && <CardHover onClick={() => props.setModal({open: true, index: props.index})} > {props.image.subtitle} </CardHover>}
             </ImgContainer>
         </CardContainer>
     )

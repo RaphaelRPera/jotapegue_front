@@ -1,19 +1,38 @@
 import React from 'react'
-import { MenuButton, MenuContainer, PageContainer } from './style'
+import { ButtonContainer, ButtonIcon, ButtonText, LogoContainer, LogoFirstLetter, MainContainer, MenuButton, MenuContainer, PageContainer } from './style'
 import { useHistory } from 'react-router-dom'
-import { goToLogin, goToSignUp, goToAddImage, goToFeed } from '../../router/Coordinator'
+import { goToLogin, goToAddImage, goToFeed } from '../../router/Coordinator'
 
 
-export const MainAppBar = () => {
+export const MainAppBar = (props) => {
     const history = useHistory()
+    const loginButton = (props.nickname || localStorage.getItem('nickname')) || 'entre'
+
     return (
         <PageContainer>
-            <MenuContainer>
-                <MenuButton onClick={() => goToLogin(history)} >Login</MenuButton>
-                <MenuButton onClick={() => goToSignUp(history)} >SignUp</MenuButton>
-                <MenuButton onClick={() => goToAddImage(history)} >Adicionar Imagem</MenuButton>
-                <MenuButton onClick={() => goToFeed(history)} >Feed</MenuButton>
-            </MenuContainer>
+            {console.log(props.nickname)}
+            <MainContainer>
+                <LogoContainer onClick={() => goToFeed(history)} >
+                    <LogoFirstLetter>J</LogoFirstLetter>OTAPEGUE
+                </LogoContainer>
+
+                <MenuContainer>
+                    <ButtonContainer onClick={() => goToAddImage(history)} >
+                        {/* <ButtonIcon>+</ButtonIcon> */}
+                        <ButtonText>+imagem</ButtonText>
+                    </ButtonContainer>
+
+                    <ButtonContainer onClick={() => goToFeed(history)} >
+                        {/* <ButtonIcon>=</ButtonIcon> */}
+                        <ButtonText>feed</ButtonText>
+                    </ButtonContainer>
+
+                    <ButtonContainer onClick={() => {loginButton === 'entre' && goToLogin(history)}} >
+                        {/* <ButtonIcon>#</ButtonIcon> */}
+                        <ButtonText> {loginButton} </ButtonText>
+                    </ButtonContainer>
+                </MenuContainer>
+            </MainContainer>
         </PageContainer>
     )
 }

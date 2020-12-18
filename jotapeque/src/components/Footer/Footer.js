@@ -5,7 +5,7 @@ import { PageContainer } from './style'
 export const Footer = () => {
     return (
         <PageContainer>
-            Footer
+            jotapegue.com.br
         </PageContainer>
     )
 }
